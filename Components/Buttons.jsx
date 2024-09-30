@@ -1,10 +1,11 @@
 import React from "react"
+import "./Buttons.css"
 
-export default function Buttons({ buttonClick }) {
+export default function Buttons({ handleButtonClick }) {
     return (
 
 
-        <button className="Btn" onClick={buttonClick}>Check Score</button>
+        <button className="Btn" onClick={handleButtonClick}>Check Score</button>
 
     )
 }

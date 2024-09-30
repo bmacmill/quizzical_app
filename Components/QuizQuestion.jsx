@@ -8,7 +8,10 @@ export default function QuizQuestion({ isSelectedAnswerTrue, question, correct, 
     //console.log("hus", correct)
     console.log("q", quiz)
     console.log("ans true", isSelectedAnswerTrue)
-    let isQuizSubmitted = true
+    //quizSubmitted
+    let isQuizSubmitted = false
+    //console.log("qs", isSubmitted)
+    // console.log("aa", quizSubmitted)
     // let bgColor = "#D6DBF5";
     // if (true && quiz.length > 1) {
     //     bgColor = "red"
@@ -32,9 +35,9 @@ export default function QuizQuestion({ isSelectedAnswerTrue, question, correct, 
                         style={!isQuizSubmitted && selectedAnswerIndex === i
                             ? { backgroundColor: "#D6DBF5" }
                             : isQuizSubmitted && choice.isCorrect
-                                ? { backgroundColor: "green", opacity: 0.9 }
+                                ? { backgroundColor: "#94D7A2", opacity: 0.9 }
                                 : isQuizSubmitted && selectedAnswerIndex === i
-                                    ? { backgroundColor: "red", opacity: 0.6 }
+                                    ? { backgroundColor: "#F8BCBC", opacity: 0.9 }
                                     //: isQuizSubmitted && i === selectedAnswerIndex
                                     //? {backgroundColor: "puple"}
                                     : null}

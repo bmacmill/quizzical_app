@@ -15,8 +15,7 @@ import { nanoid } from "nanoid";
 //the spinner thing css, really just copied docs and put here
 //not able to get to work properly
 const spinnerCss = {
-  margin: '25% auto',
-  color: "#293264;"
+  margin: '25% auto'
 };
 
 
@@ -43,6 +42,7 @@ export default function App() {
   //fetch new quesions 
   const [playAgain, setPlayAgain] = React.useState(false)
 
+  // const [quizSubmitted, setQuizSubmitted] = React.useState(false)
 
   //when should this load on first try... then again on play again button??
   React.useEffect(() => {
@@ -74,12 +74,12 @@ export default function App() {
       getQuiz()
       console.log(quiz)
       setLoading(false)
-    }, 1000)
+    }, 1200)
 
     return () => {
       clearTimeout(clear)
     }
-  }, [startQuiz, playAgain])
+  }, [startQuiz])
 
   //^^have it set on load, but not sure how to set on play again...
 
@@ -200,6 +200,11 @@ export default function App() {
     )
   }
 
+  function buttonClick() {
+    console.log("clicked btn....")
+
+  }
+
   return (
     <>
       <div className="TopBlob"></div>
@@ -215,9 +220,10 @@ export default function App() {
             selectedAnswer={quiz.selectedAnswer}
             selectedAnswerIndex={quiz.selectedAnswerIndex}
             isselectedAnswerTrue={quiz.isSelectedAnswerTrue}
+
           />
 
-          <Buttons />
+          <Buttons handleButtonClick={buttonClick} />
 
 
         </div>}
