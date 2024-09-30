@@ -16,7 +16,7 @@ import { nanoid } from "nanoid";
 //not able to get to work properly
 const spinnerCss = {
   margin: '25% auto',
-  color: "blue"
+  color: "#293264;"
 };
 
 
@@ -81,7 +81,7 @@ export default function App() {
     }
   }, [startQuiz, playAgain])
 
-  //^^have it set on load, but not sure what correct dependency should be or how to implement??
+  //^^have it set on load, but not sure how to set on play again...
 
   function fullArray(array1, str) {
     const answers = []
@@ -195,6 +195,7 @@ export default function App() {
     return (
       <FadeLoader
         cssOverride={spinnerCss}
+        color="#4D5B9E"
       />
     )
   }
