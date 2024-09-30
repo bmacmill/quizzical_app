@@ -5,10 +5,18 @@ import QuizQuestion from "../Components/QuizQuestion"
 import QuizList from "../Components/QuizList"
 import Buttons from "../Components/Buttons"
 import he from "he"
-// ^^not sure if this is working anymore???
 import "./App.css"
 import StartPage from "../Components/Startpage.jsx"
+
+import { FadeLoader } from "react-spinners";
 import { nanoid } from "nanoid";
+
+
+//the spinner thing css, really just copied docs and put here
+//not able to get to work properly
+// const spinnerCss = {
+//   margin: '50% auto',
+// };
 
 
 export default function App() {
