@@ -46,7 +46,7 @@ export default function App() {
 
   //when should this load on first try... then again on play again button??
   React.useEffect(() => {
-
+    setLoading(true)
     const url = "https://opentdb.com/api.php?amount=5&type=multiple"
     async function getQuiz() {
       const res = await fetch(url)
