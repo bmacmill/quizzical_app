@@ -1,0 +1,55 @@
+
+body {
+    font-family: "Inter", sans-serif;
+    position: relative;
+    background-color: #F5F7FB;
+    height: 100vh;
+}
+
+.StartPage_Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+}
+
+.StartPage_Info h1{
+    font-weight: 700;
+    text-align: center;
+    color: #4D5B9E;
+    font-size: 2rem;
+  }
+
+.StartPage_Info p {
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    color: #4D5B9E;
+  }
+  
+  .StartPage_Button, button {
+    background-color: #4D5B9E;
+    color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    padding: 1em 4em;
+    font-family: "Inter", sans-serif;
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.75em;
+  }
+
+  
+  .StartPage_Info h1, .StartPage_Info p{
+    padding-bottom: 0.5em;
+  }
+  
+  .StartPage_Button:hover{
+      opacity: 0.9;
+  }
+
+/* borrowed from tenzies */
+.StartPage_Button:active{
+        box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+  }
