@@ -13,6 +13,7 @@ div {
   height: 90vh;
   display: flex;
   flex-direction: column;
+  width: 100vw;
 }
 
 .QuizBoard {
@@ -55,6 +56,7 @@ div {
 .Question {
  /* no styles here */
  font-size: 1rem;
+ z-index: 100;;
 }
 
 .Question > ul {
@@ -63,6 +65,7 @@ div {
   gap: 1.5em;
   padding-bottom: 1em;
   border-bottom: 1px solid #293264;  
+  width: 550px;
 }
 
 .Question > p {
