@@ -14,9 +14,10 @@ import { nanoid } from "nanoid";
 
 //the spinner thing css, really just copied docs and put here
 //not able to get to work properly
-// const spinnerCss = {
-//   margin: '50% auto',
-// };
+const spinnerCss = {
+  margin: '25% auto',
+  color: "blue"
+};
 
 
 export default function App() {
@@ -37,7 +38,7 @@ export default function App() {
   const [submit, setSubmit] = React.useState(false)
 
   //spinner loader--ca't get to work properly removed
-  //const [loading, setLoading] = React.useState(false)
+  const [loading, setLoading] = React.useState(true)
 
   //fetch new quesions 
   const [playAgain, setPlayAgain] = React.useState(false)
@@ -69,13 +70,14 @@ export default function App() {
       }))
     }
 
-    setTimeout(() => {
+    const clear = setTimeout(() => {
       getQuiz()
       console.log(quiz)
+      setLoading(false)
     }, 1000)
 
     return () => {
-      console.log("what needs to be cleaned up?")
+      clearTimeout(clear)
     }
   }, [startQuiz, playAgain])
 
@@ -189,7 +191,13 @@ export default function App() {
 
   }
 
-
+  if (loading) {
+    return (
+      <FadeLoader
+        cssOverride={spinnerCss}
+      />
+    )
+  }
 
   return (
     <>
