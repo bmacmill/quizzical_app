@@ -1,15 +1,15 @@
 import React from "react"
 
-export default function QuizQuestion({ isSelectedAnswerTrue, question, correct, choices, handleSelectChoice, quiz, selectedAnswer, selectedAnswerIndex }) {
-
-
+export default function QuizQuestion({ quizSubmitted, isSelectedAnswerTrue, question, correct, choices, handleSelectChoice, quiz, selectedAnswer, selectedAnswerIndex }) {
+    // console.log(quiz[0])
+   
     //console.log("selans", choices[selectedAnswerIndex].isCorrect)
     //console.log("choices", choices)
     //console.log("hus", correct)
-    console.log("q", quiz)
-    console.log("ans true", isSelectedAnswerTrue)
+    // console.log("q", quizSubmitted)
+    // console.log("ans true", "isSelectedAnswerTrue", isSelectedAnswerTrue)
     //quizSubmitted
-    let isQuizSubmitted = false
+    // let isQuizSubmitted = false
     //console.log("qs", isSubmitted)
     // console.log("aa", quizSubmitted)
     // let bgColor = "#D6DBF5";
@@ -25,18 +25,24 @@ export default function QuizQuestion({ isSelectedAnswerTrue, question, correct, 
     ///others have some kind of opacity deal 
     //selectd have no border or border is color of button
     //opacity on bottom border...
+
+
+    ///make li's buttons so you can disable
+
+    //fix score and play again button
     return (
         <div className="Question">
 
             <p>{question}</p>
             <ul>
                 {choices.map((choice, i) =>
+               
                     <li
-                        style={!isQuizSubmitted && selectedAnswerIndex === i
-                            ? { backgroundColor: "#D6DBF5" }
-                            : isQuizSubmitted && choice.isCorrect
+                        style={!quizSubmitted && selectedAnswerIndex === i
+                            ? { backgroundColor: "#D6DBF5" }    
+                            : quizSubmitted && choice.isCorrect
                                 ? { backgroundColor: "#94D7A2", opacity: 0.9 }
-                                : isQuizSubmitted && selectedAnswerIndex === i
+                                : quizSubmitted && isSelectedAnswerTrue === false && selectedAnswerIndex === i
                                     ? { backgroundColor: "#F8BCBC", opacity: 0.9 }
                                     //: isQuizSubmitted && i === selectedAnswerIndex
                                     //? {backgroundColor: "puple"}

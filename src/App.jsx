@@ -42,7 +42,7 @@ export default function App() {
   //fetch new quesions 
   const [playAgain, setPlayAgain] = React.useState(false)
 
-  // const [quizSubmitted, setQuizSubmitted] = React.useState(false)
+  const [quizSubmitted, setQuizSubmitted] = React.useState(false)
 
   //when should this load on first try... then again on play again button??
   React.useEffect(() => {
@@ -72,7 +72,7 @@ export default function App() {
 
     const clear = setTimeout(() => {
       getQuiz()
-      console.log(quiz)
+     // console.log(quiz)
       setLoading(false)
     }, 1200)
 
@@ -111,7 +111,7 @@ export default function App() {
   }
 
   function handleClick(e, choices, index, id) {
-    console.log("clicked")
+   // console.log("clicked")
     const idx = choices.findIndex((choice) => choice.name === e.target.textContent)
     //set selected asnwer on object
     setQuiz(prevQuiz => prevQuiz.map((question, i) => {
@@ -131,8 +131,9 @@ export default function App() {
     const allSelected = quiz.filter((el) => {
       return el.isSelected === true
     })
-    console.log("all", allSelected)
+    //console.log("all", allSelected)
     if (allSelected.length === 5) {
+
       setAllAnswered(true)
     }
   }, [quiz])
@@ -201,7 +202,8 @@ export default function App() {
   }
 
   function buttonClick() {
-    console.log("clicked btn....")
+    console.log(allAnswered)
+    setQuizSubmitted(true)
 
   }
 
@@ -219,11 +221,13 @@ export default function App() {
             questionId={quiz.id}
             selectedAnswer={quiz.selectedAnswer}
             selectedAnswerIndex={quiz.selectedAnswerIndex}
-            isselectedAnswerTrue={quiz.isSelectedAnswerTrue}
+            isSelectedAnswerTrue={quiz.isSelectedAnswerTrue}
+            quizSubmitted={quizSubmitted}
+            
 
           />
 
-          <Buttons handleButtonClick={buttonClick} />
+          <Buttons handleButtonClick={buttonClick} canSubmit={allAnswered}/>
 
 
         </div>}

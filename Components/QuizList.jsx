@@ -1,7 +1,6 @@
 import React from "react"
 import QuizQuestion from "./QuizQuestion"
-export default function QuizList({ quiz, questionId, handleSelectChoice, selectedAnswerTrue }) {
-    console.log(quiz)
+export default function QuizList({ quizSubmitted, quiz, questionId, handleSelectChoice, selectedAnswerTrue }) {
     return (
         <>
             {quiz.map((el) => (
@@ -14,7 +13,8 @@ export default function QuizList({ quiz, questionId, handleSelectChoice, selecte
                     questionId={el.id}
                     selectedAnswer={el.selectedAnswer}
                     selectedAnswerIndex={el.selectedAnswerIndex}
-                    osselectedAnswerTrue={el.isselectedAnswerTrue}
+                    isSelectedAnswerTrue={el.isSelectedAnswerTrue}
+                    quizSubmitted={quizSubmitted}
                      />
             ))}
         </>
