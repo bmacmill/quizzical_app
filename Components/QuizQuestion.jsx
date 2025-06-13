@@ -1,7 +1,7 @@
 import React from "react"
 
 export default function QuizQuestion({ quizSubmitted, isSelectedAnswerTrue, question, correct, choices, handleSelectChoice, quiz, selectedAnswer, selectedAnswerIndex }) {
-    // console.log(quiz[0])
+
    
     //console.log("selans", choices[selectedAnswerIndex].isCorrect)
     //console.log("choices", choices)

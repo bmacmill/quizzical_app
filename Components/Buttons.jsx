@@ -1,12 +1,21 @@
 import React from "react"
 import "./Buttons.css"
 
-export default function Buttons({ handleButtonClick, canSubmit }) {
+export default function Buttons({ handleButtonClick, canSubmit, quizSubmitted, score }) {
     
     return (
 
-
-        <button className="Btn" onClick={handleButtonClick} disabled={!canSubmit}>Check Score</button>
-
+        
+            <div className="Btn_Container">
+                {quizSubmitted && <p style={{ visibility: quizSubmitted ? "visible" : "hidden" }}>You scored {score} out of 5</p> }
+            <button className="Btn" 
+                    onClick={handleButtonClick} 
+                    disabled={!canSubmit}>
+                        
+                        {!quizSubmitted ? "Check Score" : "Play again"}
+                        
+            </button>
+            </div>
+        
     )
 }

@@ -36,7 +36,7 @@ export default function App() {
   //display score afer submitted
   const [submit, setSubmit] = React.useState(false)
 
-  //spinner loader--ca't get to work properly removed
+  //spinner loader--can't get to work properly removed
   const [loading, setLoading] = React.useState(true)
 
   //fetch new quesions 
@@ -45,41 +45,74 @@ export default function App() {
   const [quizSubmitted, setQuizSubmitted] = React.useState(false)
 
   //when should this load on first try... then again on play again button??
-  React.useEffect(() => {
-    setLoading(true)
-    const url = "https://opentdb.com/api.php?amount=5&type=multiple"
-    async function getQuiz() {
-      const res = await fetch(url)
-      const data = await res.json()
-      const quizDataArray = await data.results.map((quizQuestion) => {
-        return {
-          question: he.decode(quizQuestion.question),
-          id: nanoid(),
-          correct: he.decode(quizQuestion.correct_answer),
-          fullChoices: fullArray(quizQuestion.incorrect_answers, quizQuestion.correct_answer),
-          selectedAnswer: '',
-          isSelected: false,
-          selectedAnswerIndex: null
-        }
-      })
-      setQuiz(quizDataArray.map((question) => {
-        return {
-          ...question,
-          shuffleChoices: shuffle(question.fullChoices)
-        }
-      }))
-    }
+  // React.useEffect(() => {
+  //   setLoading(true)
+  //   const url = "https://opentdb.com/api.php?amount=5&type=multiple"
+  //   async function getQuiz() {
+  //     const res = await fetch(url)
+  //     const data = await res.json()
+  //     const quizDataArray = await data.results.map((quizQuestion) => {
+  //       return {
+  //         question: he.decode(quizQuestion.question),
+  //         id: nanoid(),
+  //         correct: he.decode(quizQuestion.correct_answer),
+  //         fullChoices: fullArray(quizQuestion.incorrect_answers, quizQuestion.correct_answer),
+  //         selectedAnswer: '',
+  //         isSelected: false,
+  //         selectedAnswerIndex: null
+  //       }
+  //     })
+  //     setQuiz(quizDataArray.map((question) => {
+  //       return {
+  //         ...question,
+  //         shuffleChoices: shuffle(question.fullChoices)
+  //       }
+  //     }))
+  //   }
 
-    const clear = setTimeout(() => {
-      getQuiz()
-     // console.log(quiz)
-      setLoading(false)
-    }, 1200)
+  //refactored as per gpt
+  async function fetchQuizData() {
+  const url = "https://opentdb.com/api.php?amount=5&type=multiple";
+  const res = await fetch(url);
+  const data = await res.json();
+console.log(data)
+  return data.results.map((quizQuestion) => {
+    const fullChoices = fullArray(quizQuestion.incorrect_answers, quizQuestion.correct_answer);
+    return {
+      question: he.decode(quizQuestion.question),
+      id: nanoid(),
+      correct: he.decode(quizQuestion.correct_answer),
+      fullChoices,
+      selectedAnswer: '',
+      isSelected: false,
+      selectedAnswerIndex: null,
+      shuffleChoices: shuffle(fullChoices)
+    };
+  });
+}
 
-    return () => {
-      clearTimeout(clear)
-    }
-  }, [startQuiz])
+React.useEffect(() => {
+  setLoading(true);
+
+  const timer = setTimeout(async () => {
+    const quizDataArray = await fetchQuizData();
+    setQuiz(quizDataArray);
+    setLoading(false);
+  }, 2000);
+
+  return () => clearTimeout(timer);
+}, [startQuiz]);
+
+  //   const clear = setTimeout(() => {
+  //     getQuiz()
+  //    // console.log(quiz)
+  //     setLoading(false)
+  //   }, 2000)
+
+  //   return () => {
+  //     clearTimeout(clear)
+  //   }
+  // }, [startQuiz]) 
 
   //^^have it set on load, but not sure how to set on play again...
 
@@ -150,18 +183,18 @@ export default function App() {
   }, [quiz])
 
 
-  function checkForScore() {
-    setSubmit(true)
-  }
+  // function checkForScore() {
+  //   setSubmit(true)
+  // }
 
-  function playAgainBtn() {
-    ///call the quiz again???
-    console.log('play again...')
-    setSubmit(prevSubmit => !prevSubmit)
-    setPlayAgain(prevState => !prevState)
-    setQuiz([])
+  // function playAgainBtn() {
+  //   ///call the quiz again???
+  //   console.log('play again...')
+  //   setSubmit(prevSubmit => !prevSubmit)
+  //   setPlayAgain(prevState => !prevState)
+  //   setQuiz([])
 
-  }
+  // }
 
 
   const selectChoice = (choices, quiz, question, i) => {
@@ -201,9 +234,18 @@ export default function App() {
     )
   }
 
-  function buttonClick() {
-    console.log(allAnswered)
-    setQuizSubmitted(true)
+  async function  buttonClick() {
+    if(!quizSubmitted){
+      setQuizSubmitted(true)
+    } else {
+      //setPlayAgain()
+      const  nextData = await fetchQuizData()
+      setQuizSubmitted(false)
+      setQuiz(nextData)
+      
+    }
+   
+    
 
   }
 
@@ -227,7 +269,7 @@ export default function App() {
 
           />
 
-          <Buttons handleButtonClick={buttonClick} canSubmit={allAnswered}/>
+          <Buttons score={score} handleButtonClick={buttonClick} canSubmit={allAnswered} quizSubmitted={quizSubmitted}/>
 
 
         </div>}
