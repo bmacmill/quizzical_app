@@ -37,7 +37,8 @@ export default function QuizQuestion({ quizSubmitted, isSelectedAnswerTrue, ques
             <ul>
                 {choices.map((choice, i) =>
                
-                    <li
+                    <button className="Choice-Btn"
+                        disabled={quizSubmitted}
                         style={!quizSubmitted && selectedAnswerIndex === i
                             ? { backgroundColor: "#D6DBF5" }    
                             : quizSubmitted && choice.isCorrect
@@ -48,7 +49,7 @@ export default function QuizQuestion({ quizSubmitted, isSelectedAnswerTrue, ques
                                     //? {backgroundColor: "puple"}
                                     : null}
                         key={choice.id} onClick={() => handleSelectChoice(choice, quiz, question, i)}>
-                        {choice.name}</li>
+                        {choice.name}</button>
                 )
                 }
 

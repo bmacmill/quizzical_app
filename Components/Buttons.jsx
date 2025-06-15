@@ -7,7 +7,7 @@ export default function Buttons({ handleButtonClick, canSubmit, quizSubmitted, s
 
         
             <div className="Btn_Container">
-                {quizSubmitted && <p style={{ visibility: quizSubmitted ? "visible" : "hidden" }}>You scored {score} out of 5</p> }
+                {quizSubmitted && <p>You scored {score} out of 5</p> }
             <button className="Btn" 
                     onClick={handleButtonClick} 
                     disabled={!canSubmit}>

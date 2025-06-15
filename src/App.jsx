@@ -143,21 +143,21 @@ React.useEffect(() => {
     return array.sort(() => Math.random() - 0.5);
   }
 
-  function handleClick(e, choices, index, id) {
-   // console.log("clicked")
-    const idx = choices.findIndex((choice) => choice.name === e.target.textContent)
-    //set selected asnwer on object
-    setQuiz(prevQuiz => prevQuiz.map((question, i) => {
+  // function handleClick(e, choices, index, id) {
+  //  // console.log("clicked")
+  //   const idx = choices.findIndex((choice) => choice.name === e.target.textContent)
+  //   //set selected asnwer on object
+  //   setQuiz(prevQuiz => prevQuiz.map((question, i) => {
 
-      return question.id == id ? {
-        ...question,
-        isSelected: true,
-        selectedIndex: idx,
-        selectedAnswer: e.target.textContent,
-      } : question
-    }))
+  //     return question.id == id ? {
+  //       ...question,
+  //       isSelected: true,
+  //       selectedIndex: idx,
+  //       selectedAnswer: e.target.textContent,
+  //     } : question
+  //   }))
 
-  }
+  // }
 
   //a use effect that checks if all the quesitons have been asnwered, sets that state to true.
   React.useEffect(() => {
@@ -234,6 +234,7 @@ React.useEffect(() => {
     )
   }
 
+  // this does't work right, need to disable until all q are answered
   async function  buttonClick() {
     if(!quizSubmitted){
       setQuizSubmitted(true)
@@ -265,11 +266,15 @@ React.useEffect(() => {
             selectedAnswerIndex={quiz.selectedAnswerIndex}
             isSelectedAnswerTrue={quiz.isSelectedAnswerTrue}
             quizSubmitted={quizSubmitted}
-            
 
           />
 
-          <Buttons score={score} handleButtonClick={buttonClick} canSubmit={allAnswered} quizSubmitted={quizSubmitted}/>
+          <Buttons 
+              score={score} 
+              handleButtonClick={buttonClick} 
+              canSubmit={allAnswered} 
+              quizSubmitted={quizSubmitted}
+              />
 
 
         </div>}
