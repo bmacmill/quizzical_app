@@ -2,7 +2,7 @@ import React from "react"
 import "./Buttons.css"
 
 export default function Buttons({ handleButtonClick, canSubmit, quizSubmitted, score }) {
-    
+    console.log("can", canSubmit)
     return (
 
         

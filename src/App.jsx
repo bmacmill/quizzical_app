@@ -243,6 +243,7 @@ React.useEffect(() => {
       const  nextData = await fetchQuizData()
       setQuizSubmitted(false)
       setQuiz(nextData)
+      setAllAnswered(false)
       
     }
    
